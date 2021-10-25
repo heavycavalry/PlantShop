@@ -19,7 +19,7 @@ namespace PlantShop.Controllers
         public async Task<IActionResult> Index()
         {
             var allPlants = await _context.Plants.ToListAsync();
-            return View();
+            return View(allPlants);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace PlantShop.Controllers
         }
         public IActionResult Index()
         {
-            var data = _context.Categories.ToList();
-            return View(data);
+            var allCategories = _context.Categories.ToList();
+            return View(allCategories);
         }
     }
 }
