@@ -55,6 +55,9 @@ namespace PlantShop
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            //SEED DB
+            AppDbInit.Seed(app);
         }
     }
 }

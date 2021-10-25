@@ -10,7 +10,10 @@ namespace PlantShop.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Display(Name = "Icon")]
         public string Icon { get; set; }
+        [Display(Name = "Name")]
         public string Description { get; set; }
 
         //RELATIONS
