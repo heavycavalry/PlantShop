@@ -12,8 +12,10 @@ namespace PlantShop.Models
         public int Id { get; set; }
 
         [Display(Name = "Icon")]
+        [Required(ErrorMessage = "The icon is required")]
         public string Icon { get; set; }
         [Display(Name = "Name")]
+        [Required(ErrorMessage = "The name field is required")]
         public string Description { get; set; }
 
         //RELATIONS

@@ -21,5 +21,11 @@ namespace PlantShop.Controllers
             var allPlants = await _context.Plants.ToListAsync();
             return View(allPlants);
         }
+
+        public IActionResult Filter()
+        {
+            //TODO
+            return View();
+        }
     }
 }
