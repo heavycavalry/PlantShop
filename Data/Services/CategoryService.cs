@@ -20,9 +20,11 @@ namespace PlantShop.Data.Services
             await _context.SaveChangesAsync();
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Categories.FirstOrDefaultAsync(n => n.Id == id);
+            _context.Categories.Remove(result);
+            await _context.SaveChangesAsync();
         }
 
         public async Task<Category> GetById(int id)
@@ -31,15 +33,17 @@ namespace PlantShop.Data.Services
             return result;
         }
 
-        public Category Update(int id, Category newCategory)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<Category>> GetAll()
         {
             var result = await _context.Categories.ToListAsync();
             return result;
+        }
+
+        public async Task<Category> Update(int id, Category newCategory)
+        {
+            _context.Update(newCategory);
+            await _context.SaveChangesAsync();
+            return newCategory;
         }
     }
 }

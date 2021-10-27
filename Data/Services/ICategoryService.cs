@@ -11,8 +11,8 @@ namespace PlantShop.Data.Services
         Task<IEnumerable<Category>> GetAll();
         Task<Category> GetById(int id);
         Task Add(Category category);
-        Category Update(int id, Category newCategory);
-        void Delete(int id);
+        Task<Category> Update(int id, Category newCategory);
+        Task Delete(int id);
 
     }
 }

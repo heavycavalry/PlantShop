@@ -40,14 +40,44 @@ namespace PlantShop.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        //GET: CATEGORIES/DESCRIPTION/1
+        //GET: CATEGORIES/EDIT
 
         public async Task<IActionResult> Edit(int id)
         {
-            var categoryDescription = await _service.GetById(id);
+            var categoryDetails = await _service.GetById(id);
+            if (categoryDetails == null) return View("NotFound");
+            return View(categoryDetails);
+        }
 
-            if (categoryDescription == null) return View("Empty");
-            return View(categoryDescription);
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Icon,Description")] Category category)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+            await _service.Update(id, category);
+            return RedirectToAction(nameof(Index));
+        }
+
+        //GET: CATEGORIES/DELETE
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var categoryDetails = await _service.GetById(id);
+            if (categoryDetails == null) return View("NotFound");
+            return View(categoryDetails);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteCategory(int id)
+        {
+
+            var categoryDetails = await _service.GetById(id);
+            if (categoryDetails == null) return View("NotFound");
+
+            await _service.Delete(id);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -10,10 +10,14 @@
 
 <style>
     .plant-card {
-        max-width: 540px;
+        max-width: 520px;
     }
 
     .image {
+        width: 100%;
+    }
+
+    .title {
         width: 100%;
     }
 </style>
@@ -24,7 +28,7 @@
 
     @foreach (var plant in Model)
     {
-        <div class="col-sm-6 col-md-6 mb-3">
+        <div class="col-sm-6 col-md-6 col-xl-4 mb-3">
             <div class="card bg-light mb-3 plant-card">
                 <div class="row g-0">
                     <div class="col-md-6">
@@ -52,7 +56,35 @@
     }
     @foreach (var plant in Model)
     {
-        <div class="col-sm-6 col-md-6 mb-3">
+        <div class="col-sm-6 col-md-6 col-xl-4 mb-3">
+            <div class="card bg-light mb-3 plant-card">
+                <div class="row g-0">
+                    <div class="col-md-6">
+                        <img class="image" src="@plant.ImageURL" alt="@plant.Name" />
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <h4 class="title card-title">@plant.Name</h4>
+                            <p class="card-text">Quantity: @plant.Quantity</p>
+                            <p class="card-text">Price: @plant.Price $</p>
+                            <a class="btn btn-outline-secondary float-right">Show details<i class="bi bi-eye-fill"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer">
+                            <p class="card-text">
+                                <a class="btn btn-info"><i class="bi bi-pencil"></i>Edit</a>
+                                <a class="btn btn-success"><i class="bi bi-card-plus"></i>Add to Card (@plant.Price$)</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @foreach (var plant in Model)
+    {
+        <div class="col-sm-6 col-md-6 col-xl-4  mb-3">
             <div class="card bg-light mb-3 plant-card">
                 <div class="row g-0">
                     <div class="col-md-6">
@@ -80,7 +112,7 @@
     }
     @foreach (var plant in Model)
     {
-        <div class="col-sm-6 col-md-6 mb-3">
+        <div class="col-sm-6 col-md-6 col-xl-4 mb-3">
             <div class="card bg-light mb-3 plant-card">
                 <div class="row g-0">
                     <div class="col-md-6">
@@ -108,35 +140,7 @@
     }
     @foreach (var plant in Model)
     {
-        <div class="col-sm-6 col-md-6 mb-3">
-            <div class="card bg-light mb-3 plant-card">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <img class="image" src="@plant.ImageURL" alt="@plant.Name" />
-                    </div>
-                    <div class="col-md-6">
-                        <div class="card-body">
-                            <h4 class="card-title">@plant.Name</h4>
-                            <p class="card-text">Quantity: @plant.Quantity</p>
-                            <p class="card-text">Price: @plant.Price $</p>
-                            <a class="btn btn-outline-secondary float-right">Show details<i class="bi bi-eye-fill"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="card-footer">
-                            <p class="card-text">
-                                <a class="btn btn-info"><i class="bi bi-pencil"></i>Edit</a>
-                                <a class="btn btn-success"><i class="bi bi-card-plus"></i>Add to Card (@plant.Price$)</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-    @foreach (var plant in Model)
-    {
-        <div class="col-sm-6 col-md-4 mb-3">
+        <div class="col-sm-6 col-md-6 col-xl-4 mb-3">
             <div class="card bg-light mb-3 plant-card">
                 <div class="row g-0">
                     <div class="col-md-6">
