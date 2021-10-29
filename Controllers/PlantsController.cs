@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PlantShop.Data;
+using PlantShop.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,22 +11,24 @@ namespace PlantShop.Controllers
 {
     public class PlantsController : Controller
     {
-        private readonly AppDbContext _context;
+        private readonly IPlantService _service;
 
-        public PlantsController(AppDbContext context)
+        public PlantsController(IPlantService service)
         {
-            _context = context;
+            _service = service;
         }
         public async Task<IActionResult> Index()
         {
-            var allPlants = await _context.Plants.ToListAsync();
+            var allPlants = await _service.GetAll();
             return View(allPlants);
         }
 
-        public IActionResult Filter()
+        //GET: PLANTS/DESCRIPTION
+
+        public async Task<IActionResult> Description(int id)
         {
-            //TODO
-            return View();
+            var plantDescription = await _service.GetPlantById(id);
+            return View(plantDescription);
         }
     }
 }

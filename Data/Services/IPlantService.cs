@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace PlantShop.Data.Services
 {
-    public interface ICategoryService : IEntityBaseRepository<Category>
+    public interface IPlantService : IEntityBaseRepository<Plant>
     {
-
+        Task<Plant> GetPlantById(int id);
 
     }
 }

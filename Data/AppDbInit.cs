@@ -59,7 +59,7 @@ namespace PlantShop.Data
                         new Plant()
                         {
                             Name = "Monstera deliciosa",
-                            Description = "Monstera deliciosa, commonly called split-leaf philodendron or swiss cheese plant, is native to Central America. It is a climbing, evergreen perennial vine that is perhaps most noted for its large perforated leaves on thick plant stems and its long cord-like aerial roots.<\br> Problems <\br> Watch for aphids, mealybugs, thrips, scale or spider mites.<\br>  Uses <\br> Large leaved indoor plant for warm, bright and humid areas.",
+                            Description = "Monstera deliciosa, commonly called split-leaf philodendron or swiss cheese plant, is native to Central America. It is a climbing, evergreen perennial vine that is perhaps most noted for its large perforated leaves on thick plant stems and its long cord-like aerial roots.",
                             ImageURL = "https://a.allegroimg.com/original/114271/2526d6e84ba09998b0f6ab05059f/Ladna-Monstera-Deliciosa-Dziurawa-Filodendron",
                             Quantity = 2,
                             Price = 30.99
