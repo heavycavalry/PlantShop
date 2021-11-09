@@ -21,5 +21,9 @@ namespace PlantShop.Models
 
         //RELATIONS
         public List<Plant_Category> Plants_Categories { get; set; }
+
+        //???
+
+        //public ICollection<Plant> Plant;
     }
 }

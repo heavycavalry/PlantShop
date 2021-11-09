@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PlantShop.Data;
 using PlantShop.Data.Services;
+using PlantShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,24 @@ namespace PlantShop.Controllers
         {
             var plantDescription = await _service.GetPlantById(id);
             return View(plantDescription);
+        }
+
+        public async Task<IActionResult> Edit(int id)
+        {
+            var plant = await _service.GetById(id);
+            if (plant == null) return View("NotFound");
+            return View(plant);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ImageUrl,Description")] Plant plant)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(plant);
+            }
+            await _service.Update(id, plant);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

@@ -7,9 +7,24 @@
         background-image: url("https://images.unsplash.com/photo-1526565782131-a13074f0dbbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80");
         background-repeat: no-repeat;
         background-position: right;
+        background-size: auto 100vh;
     }
 
     .border-top {
         border-top: hidden !important;
     }
+    .main-text-box {
+        display: flex;
+        align-items: center;
+        height: 50vh;
+    }
+
+
 </style>
+    <div class="main-text-box">
+        <div>
+            <h1>Jungle Station</h1>
+            <h3>Store for people who love plants.</h3>
+            <a class="btn btn-success" asp-controller="Plants" asp-action="Index"><i class="bi bi-card-plus"></i>SHOP NOW</a>
+        </div>
+</div>
