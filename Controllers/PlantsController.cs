@@ -40,7 +40,7 @@ namespace PlantShop.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ImageUrl,Description")] Plant plant)
+        public async Task<IActionResult> Edit(int id, Plant plant)
         {
             if (!ModelState.IsValid)
             {

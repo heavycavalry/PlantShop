@@ -15,6 +15,9 @@
         width: 150px;
         border-radius: 50%;
     }
+    textarea {
+        height: 300px;
+    }
 </style>
 
 <div class="row text">
@@ -33,29 +36,34 @@
 
                     </div>
                     <div class="form-group">
-                        <label asp-for="ImageURL" class="control-label">Icon URL</label>
+                        <label asp-for="ImageURL" class="control-label">Image URL</label>
                         <input asp-for="ImageURL" class="form-control" />
                         <span asp-validation-for="ImageURL" class="text-danger"></span>
                     </div>
                     <div class="form-group mt-2">
-                        <label asp-for="Name" class="control-label">Category Name</label>
+                        <label asp-for="Name" class="control-label">Plant Name</label>
                         <input asp-for="Name" class="form-control" />
                         <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="form-group mt-2">
-                        <label asp-for="Description" class="control-label">Category Name</label>
+                        <label asp-for="Description" class="control-label">Description</label>
                         <textarea asp-for="Description" class="form-control"></textarea>
                         <span asp-validation-for="Description" class="text-danger"></span>
                     </div>
                     <div class="form-group mt-2">
-                        <label asp-for="Price" class="control-label">Category Name</label>
+                        <label asp-for="Price" class="control-label">Price</label>
                         <input asp-for="Price" class="form-control" />
                         <span asp-validation-for="Price" class="text-danger"></span>
                     </div>
                     <div class="form-group mt-2">
-                        <label asp-for="Quantity" class="control-label">Category Name</label>
+                        <label asp-for="Quantity" class="control-label">Quantity</label>
                         <input asp-for="Quantity" class="form-control" />
                         <span asp-validation-for="Quantity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-2">
+                        <label asp-for="Plants_Categories" class="control-label">Category</label>
+                        <select asp-for="Plants_Categories" class="form-control"></select>
+                        <span asp-validation-for="Plants_Categories" class="text-danger"></span>
                     </div>
                     <div class="form-group mt-5">
                         <input type="submit" value="Update" class="btn btn-outline-success" />
