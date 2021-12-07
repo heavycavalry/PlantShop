@@ -30,57 +30,59 @@
         }
 
     </style>
-    <header>
+    <div id="main-container">
+        <header>
 
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <div class="logo">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Jungle Station</a>
-                </div>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Plants" asp-action="Index">Shop</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Managment</a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Categories</a>
-                                <a class="dropdown-item" asp-controller="Plants" asp-action="Index">Plants</a>
+            <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container-fluid">
+                    <div class="logo">
+                        <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Jungle Station</a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Plants" asp-action="Index">Shop</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Managment</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Categories</a>
+                                    <a class="dropdown-item" asp-controller="Plants" asp-action="Index">Plants</a>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <form class="form-group" asp-controller="Plants" asp-action="Filter">
+                            <div class="input-group mb-3">
+                                <input name="searchString" type="text" class="form-control" placeholder="Search for a plant..." />
+                                <button class="btn btn-success" type="submit"><i class="bi bi-search"></i></button>
                             </div>
-                        </li>
-                    </ul>
-
-                    <form class="form-group" asp-controller="Plants" asp-action="Filter">
-                        <div class="input-group mb-3">
-                            <input name="searchString" type="text" class="form-control" placeholder="Search for a plant..." />
-                            <button class="btn btn-success" type="submit"><i class="bi bi-search"></i></button>
-                        </div>
-                    </form>
+                        </form>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
 
-    </header>
-    <div class="container-fluid">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="signature">
-            &copy; 2021 - PlantShop - Klaudia Paluch
+        </header>
+        <div class="container-fluid">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
         </div>
-    </footer>
+
+        <footer class="border-top footer text-muted">
+            <div class="signature">
+                &copy; 2021 - PlantShop - Klaudia Paluch
+            </div>
+        </footer>
+    </div>
     <script type="text/javascript" src="~/lib/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
     <script type="text/javascript" src="~/js/site.js" asp-append-version="true"></script>

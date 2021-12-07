@@ -3,13 +3,25 @@
 }
 
 <style>
-
-    body {
+    html {
+        height: 100vh;
+    }
+    #main-container {
+        height: 100vh;
         background-image: url("https://images.unsplash.com/photo-1526565782131-a13074f0dbbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=687&q=80");
         background-repeat: no-repeat;
         background-position: right;
         background-size: auto 100vh;
+        max-width: 1200px;
+        margin: 0 auto;
     }
+    @@media only screen and (max-width: 950px) {
+        #main-container {
+            background-position: center;
+        }
+}
+
+
 
     .border-top {
         border-top: hidden !important;
@@ -24,6 +36,12 @@
     .mainpage-text {
         font-family: 'Playfair Display', serif;
         text-transform: capitalize;
+
+    }
+    @@media only screen and (max-width: 950px) {
+        .main-text-box {
+            justify-content: center;
+        }
     }
 
 

@@ -26,14 +26,62 @@ namespace PlantShop.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Icon")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+                });
+
+            modelBuilder.Entity("PlantShop.Models.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("PlantShop.Models.OrderPlant", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlantId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("PlantId");
+
+                    b.ToTable("OrderPlant");
                 });
 
             modelBuilder.Entity("PlantShop.Models.Plant", b =>
@@ -78,6 +126,25 @@ namespace PlantShop.Migrations
                     b.ToTable("Plants_Categories");
                 });
 
+            modelBuilder.Entity("PlantShop.Models.OrderPlant", b =>
+                {
+                    b.HasOne("PlantShop.Models.Order", "Order")
+                        .WithMany("OrderPlants")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PlantShop.Models.Plant", "Plant")
+                        .WithMany()
+                        .HasForeignKey("PlantId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Plant");
+                });
+
             modelBuilder.Entity("PlantShop.Models.Plant_Category", b =>
                 {
                     b.HasOne("PlantShop.Models.Category", "Category")
@@ -100,6 +167,11 @@ namespace PlantShop.Migrations
             modelBuilder.Entity("PlantShop.Models.Category", b =>
                 {
                     b.Navigation("Plants_Categories");
+                });
+
+            modelBuilder.Entity("PlantShop.Models.Order", b =>
+                {
+                    b.Navigation("OrderPlants");
                 });
 
             modelBuilder.Entity("PlantShop.Models.Plant", b =>

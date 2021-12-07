@@ -34,5 +34,9 @@ namespace PlantShop.Data
         public DbSet<Plant> Plants { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Plant_Category> Plants_Categories { get; set; }
+                //ORDERS TABLES
+
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderPlant> OrderPlant { get; set; }
     }
 }
