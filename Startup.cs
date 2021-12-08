@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using PlantShop.Data;
+using PlantShop.Data.Card;
 using PlantShop.Data.Services;
 using System;
 using System.Collections.Generic;
@@ -32,7 +34,9 @@ namespace PlantShop
             //SERVICES CONFIGURATION
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IPlantService, PlantService>();
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sc => ShoppingCard.GetShoppingCard(sc));
+            services.AddSession();
             services.AddControllersWithViews();
         }
 
@@ -53,6 +57,7 @@ namespace PlantShop
             app.UseStaticFiles();
 
             app.UseRouting();
+            app.UseSession();
 
             app.UseAuthorization();
 
@@ -64,7 +69,7 @@ namespace PlantShop
             });
 
             //SEED DB
-            AppDbInit.Seed(app);
+            //AppDbInit.Seed(app);
         }
     }
 }

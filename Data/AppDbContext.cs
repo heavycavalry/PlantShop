@@ -38,5 +38,6 @@ namespace PlantShop.Data
 
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderPlant> OrderPlant { get; set; }
+        public DbSet<ShoppingCardItem> ShoppingCardItems { get; set; }
     }
 }
