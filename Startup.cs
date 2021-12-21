@@ -69,7 +69,8 @@ namespace PlantShop
             });
 
             //SEED DB
-            //AppDbInit.Seed(app);
+            AppDbInit.Seed(app);
+            AppDbInit.SeedUsersAndRoles(app).Wait();
         }
     }
 }
