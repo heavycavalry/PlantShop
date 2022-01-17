@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using PlantShop.Data;
 using PlantShop.Data.Services;
@@ -32,6 +33,14 @@ namespace PlantShop.Controllers
             return View(plantDescription);
         }
 
+        //GET: PLANTS/ CREATE
+
+        public async Task<IActionResult> Create()
+		{
+            var plantDropdownData = await _service.GetNewPlantCategories();
+            ViewBag.Categories = new SelectList(plantDropdownData.Categories, "Id", "Description");
+            return View();
+		}
         public async Task<IActionResult> Edit(int id)
         {
             var plant = await _service.GetById(id);

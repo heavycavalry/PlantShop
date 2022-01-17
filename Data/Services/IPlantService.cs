@@ -1,4 +1,5 @@
 ﻿using PlantShop.Data.Base;
+using PlantShop.Data.ViewModels;
 using PlantShop.Models;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace PlantShop.Data.Services
     public interface IPlantService : IEntityBaseRepository<Plant>
     {
         Task<Plant> GetPlantById(int id);
+       Task<NewPlantDropdown> GetNewPlantCategories();
 
     }
 }

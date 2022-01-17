@@ -143,9 +143,9 @@ namespace PlantShop.Data
 				{
                     var newAdmin = new User
                     {
-                        FullName = "admin",
+                        FullName = "admin user",
                         UserName = "admin",
-                        Email = "admin@junglestation.com",
+                        Email = adminEmail,
                         EmailConfirmed = true
                     };
 
@@ -160,9 +160,9 @@ namespace PlantShop.Data
                 {
                     var newUser = new User
                     {
-                        FullName = "user",
+                        FullName = "application user ",
                         UserName = "user",
-                        Email = "user@junglestation.com",
+                        Email = userEmail,
                         EmailConfirmed = true
                     };
 

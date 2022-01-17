@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -9,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using PlantShop.Data;
 using PlantShop.Data.Card;
 using PlantShop.Data.Services;
+using PlantShop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,8 +39,18 @@ namespace PlantShop
             services.AddScoped<IPlantService, PlantService>();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCard.GetShoppingCard(sc));
+
+            //USERS ADMIN CONFIGURATION
+            services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddMemoryCache();
+
+
             services.AddSession();
+            services.AddAuthentication(options => { options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; 
+            });
             services.AddControllersWithViews();
+
+        
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -59,6 +72,7 @@ namespace PlantShop
             app.UseRouting();
             app.UseSession();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -69,8 +83,8 @@ namespace PlantShop
             });
 
             //SEED DB
-            AppDbInit.Seed(app);
-            AppDbInit.SeedUsersAndRoles(app).Wait();
+        // AppDbInit.Seed(app);
+       //  AppDbInit.SeedUsersAndRoles(app).Wait();
         }
     }
 }

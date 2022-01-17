@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PlantShop.Data.Base;
+using PlantShop.Data.ViewModels;
 using PlantShop.Models;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,17 @@ namespace PlantShop.Data.Services
 
         }
 
-        public async Task<Plant> GetPlantById(int id)
+        public async Task<NewPlantDropdown> GetNewPlantCategories()
+        {
+			var response = new NewPlantDropdown
+			{
+				Categories = await _context.Categories.OrderBy(n => n.Description).ToListAsync()
+			};
+			return response;
+        }
+
+
+		public async Task<Plant> GetPlantById(int id)
         {
             var plantDetails = _context.Plants
                 .Include(p => p.Plants_Categories).ThenInclude(c => c.Category)
