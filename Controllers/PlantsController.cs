@@ -58,5 +58,18 @@ namespace PlantShop.Controllers
             await _service.Update(id, plant);
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(NewPlant plant)
+        {
+            if (!ModelState.IsValid)
+			{
+                return View(plant);
+			}
+
+            await _service.AddNewPlant(plant);
+            return RedirectToAction(nameof(Index));
+
+        }
     }
 }

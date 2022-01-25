@@ -12,6 +12,6 @@ namespace PlantShop.Data.Services
     {
         Task<Plant> GetPlantById(int id);
        Task<NewPlantDropdown> GetNewPlantCategories();
-
+        Task AddNewPlant(NewPlant data);
     }
 }

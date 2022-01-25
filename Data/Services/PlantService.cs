@@ -18,7 +18,34 @@ namespace PlantShop.Data.Services
 
         }
 
-        public async Task<NewPlantDropdown> GetNewPlantCategories()
+		public async Task AddNewPlant(NewPlant data)
+		{
+            var newPlant = new Plant()
+            {
+                Name = data.Name,
+                Description = data.Description,
+                Price = data.Price,
+                Quantity = data.Quantity,
+                ImageURL = data.ImageURL,
+
+            };
+            await _context.Plants.AddAsync(newPlant);
+            await _context.SaveChangesAsync();
+
+
+            foreach (var categoryId in data.CategoryIds)
+			{
+                var newPlantCategory = new Plant_Category()
+                {
+                    PlantId = newPlant.Id,
+                    CategoryId = categoryId
+                };
+                await _context.Plants_Categories.AddAsync(newPlantCategory);
+			}
+            await _context.SaveChangesAsync();
+		}
+
+		public async Task<NewPlantDropdown> GetNewPlantCategories()
         {
 			var response = new NewPlantDropdown
 			{
