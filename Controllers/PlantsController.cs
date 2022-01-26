@@ -25,6 +25,18 @@ namespace PlantShop.Controllers
             return View(allPlants);
         }
 
+        public async Task<IActionResult> Filter(string searchString)
+        {
+            var allPlants = await _service.GetAll();
+
+            if(!string.IsNullOrEmpty(searchString)) {
+                var filteredResult = allPlants.Where(n => n.Name.Contains(searchString) || n.Description.Contains(searchString)).ToList();
+                return View("Index", filteredResult);
+			}
+
+            return View("Index", allPlants);
+        }
+
         //GET: PLANTS/DESCRIPTION
 
         public async Task<IActionResult> Description(int id)
@@ -38,7 +50,9 @@ namespace PlantShop.Controllers
         public async Task<IActionResult> Create()
 		{
             var plantDropdownData = await _service.GetNewPlantCategories();
+
             ViewBag.Categories = new SelectList(plantDropdownData.Categories, "Id", "Description");
+
             return View();
 		}
         public async Task<IActionResult> Edit(int id)
@@ -64,6 +78,10 @@ namespace PlantShop.Controllers
         {
             if (!ModelState.IsValid)
 			{
+                var plantDropdownData = await _service.GetNewPlantCategories();
+
+                ViewBag.Categories = new SelectList(plantDropdownData.Categories, "Id", "Description");
+
                 return View(plant);
 			}
 

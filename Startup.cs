@@ -37,14 +37,15 @@ namespace PlantShop
             //SERVICES CONFIGURATION
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IPlantService, PlantService>();
+            services.AddScoped<IOrdersService, OrdersService>();
+
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddScoped(sc => ShoppingCard.GetShoppingCard(sc));
 
             //USERS ADMIN CONFIGURATION
             services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
             services.AddMemoryCache();
-
-
             services.AddSession();
             services.AddAuthentication(options => { options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; 
             });

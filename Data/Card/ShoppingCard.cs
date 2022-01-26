@@ -78,6 +78,14 @@ namespace PlantShop.Data.Card
 			var total = _context.ShoppingCardItems.Where(n => n.ShoppingCardId == ShoppingCardId).Select(n => n.Plant.Price * n.Amount).Sum();
 			return total; 
 		}
-		
+
+		public async Task ClearShoppingCard()
+		{
+			var items = await _context.ShoppingCardItems.Where(n => n.ShoppingCardId == ShoppingCardId).ToListAsync();
+			_context.ShoppingCardItems.RemoveRange(items);
+			await _context.SaveChangesAsync();
+		}
+
+
 	}
 }

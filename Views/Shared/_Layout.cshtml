@@ -17,6 +17,12 @@
 <body>
     <style>
 
+        #main-container {
+            height: 100vh;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
         .form {
             padding-right: 25px;
             display: inline;
@@ -42,7 +48,7 @@
                             aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-around">
                         <ul class="navbar-nav flex-grow-1">
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -62,11 +68,15 @@
                         <form class="form-group" asp-controller="Plants" asp-action="Filter">
                             <div class="input-group mb-3">
                                 <input name="searchString" type="text" class="form-control" placeholder="Search for a plant..." />
-                                <button class="btn btn-success" type="submit"><i class="bi bi-search"></i></button>
+                                <button class="btn btn-success mr-2" type="submit"><i class="bi bi-search"></i></button>
                             </div>
                         </form>
+
+                        <div class="form-group">
+                            @await Component.InvokeAsync("ShoppingCardSummary")  
+                                <a class="btn btn-outline-success mb-3 float-end" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow=in-right"></i>Log in</a>
+                        </div>
                     </div>
-                </div>
             </nav>
 
 
