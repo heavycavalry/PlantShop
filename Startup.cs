@@ -75,6 +75,7 @@ namespace PlantShop
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -84,8 +85,8 @@ namespace PlantShop
             });
 
             //SEED DB
-        // AppDbInit.Seed(app);
-       //  AppDbInit.SeedUsersAndRoles(app).Wait();
+       // AppDbInit.Seed(app);
+          AppDbInit.SeedUsersAndRoles(app).Wait();
         }
     }
 }

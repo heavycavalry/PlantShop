@@ -11,6 +11,7 @@ namespace PlantShop.Data
 {
     public class AppDbInit
     {
+        private static String COMMON_TMP_PASSWORD = "Adam!4444";
         public static void Seed(IApplicationBuilder applicationBulider)
         {
             using (var serviceScope = applicationBulider.ApplicationServices.CreateScope())
@@ -119,11 +120,11 @@ namespace PlantShop.Data
 
             }
         }
-    
-    public static async Task SeedUsersAndRoles(IApplicationBuilder applicationBuilder)
-		{
+
+        public static async Task SeedUsersAndRoles(IApplicationBuilder applicationBuilder)
+        {
             using (var serviceScope = applicationBuilder.ApplicationServices.CreateScope())
-			{
+            {
 
                 //roles
                 var roleManager = serviceScope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -132,26 +133,26 @@ namespace PlantShop.Data
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
                 if (!await roleManager.RoleExistsAsync(UserRoles.User))
                     await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
-                
+
                 var userManager = serviceScope.ServiceProvider.GetRequiredService<UserManager<User>>();
-                
-                
+
+
                 string adminEmail = "admin@junglestation.com";
                 var admin = await userManager.FindByEmailAsync(adminEmail);
 
                 if (admin == null)
-				{
+                {
                     var newAdmin = new User
                     {
-                        FullName = "admin user",
+                        FullName = "Admin User",
                         UserName = "admin",
                         Email = adminEmail,
                         EmailConfirmed = true
                     };
 
-                    await userManager.CreateAsync(newAdmin, "1234");
+                    await userManager.CreateAsync(newAdmin, COMMON_TMP_PASSWORD);
                     await userManager.AddToRoleAsync(newAdmin, UserRoles.Admin);
-				}
+                }
 
                 string userEmail = "user@junglestation.com";
                 var user = await userManager.FindByEmailAsync(userEmail);
@@ -160,19 +161,19 @@ namespace PlantShop.Data
                 {
                     var newUser = new User
                     {
-                        FullName = "application user ",
+                        FullName = "Application User",
                         UserName = "user",
                         Email = userEmail,
                         EmailConfirmed = true
                     };
 
-                    await userManager.CreateAsync(newUser, "1234");
+                    await userManager.CreateAsync(newUser, COMMON_TMP_PASSWORD);
                     await userManager.AddToRoleAsync(newUser, UserRoles.User);
                 }
 
             }
         }
-    
+
     }
 }
 

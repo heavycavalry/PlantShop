@@ -10,7 +10,7 @@ using PlantShop.Data;
 namespace PlantShop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211227151941_init")]
+    [Migration("20220128170254_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

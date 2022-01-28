@@ -56,30 +56,45 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Plants" asp-action="Index">Shop</a>
                             </li>
+
+                            @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                            {
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" data-bs-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Managment</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" asp-controller="Categories" asp-action="Index">Categories</a>
                                     <a class="dropdown-item" asp-controller="Plants" asp-action="Index">Plants</a>
                                 </div>
-                            </li>
+                            </li>}
                         </ul>
 
-                        <form class="form-group" asp-controller="Plants" asp-action="Filter">
-                            <div class="input-group mb-3">
-                                <input name="searchString" type="text" class="form-control" placeholder="Search for a plant..." />
-                                <button class="btn btn-success mr-2" type="submit"><i class="bi bi-search"></i></button>
-                            </div>
+                        <form class="d-flex" asp-controller="Plants" asp-action="Filter">
+                            <input name="searchString" type="text" class="form-control me-sm-2" placeholder="Search for a plant...">
+                            <button class="btn btn-sm btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
                         </form>
+                        <span style="padding: 5px;">
 
-                        <div class="form-group">
-                            @await Component.InvokeAsync("ShoppingCardSummary")  
-                                <a class="btn btn-outline-success mb-3 float-end" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow=in-right"></i>Log in</a>
-                        </div>
+                        </span>
+                        <ul class="navbar-nav">
+                            @await Component.InvokeAsync("ShoppingCardSummary")
+                        </ul>
+
+                        @inject UserManager<User> UserManager;
+
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn btn-sm btn-outline-success my-2 my-sm-0" asp-controller="Account" asp-action="Login"><i class="bi bi-box-arrow-in-right"></i>Log in</a>
+                            <a class="btn btn-sm btn-outline-info my-2 my-sm-0" asp-controller="Account" asp-action="Register"><i class="bi bi-person-plus"></i>Sign up</a>
+                        }
+
+                        else
+                        {
+                                <form asp-controller="Account" asp-action="Logout">
+                                    <button class="btn btn-sm btn-outline-secondary my-2 my-sm-0">Log out</button>
+                                </form>}
+                    </div>
                     </div>
             </nav>
-
-
         </header>
         <div class="container-fluid">
             <main role="main" class="pb-3">
