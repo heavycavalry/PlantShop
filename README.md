@@ -1,6 +1,6 @@
 # PlantShop
-##https://junglestation.azurewebsites.net/
+## https://junglestation.azurewebsites.net/
 
-###Logowanie admin
-login: admin@junglestation.com
-hasło: Adam!4444
+### Logowanie admin
+#### login: admin@junglestation.com
+#### hasło: Adam!4444
